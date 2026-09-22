@@ -494,7 +494,6 @@ table.bv-tabela-forte thead th {
 }
 .vg-topo-comp { margin: 2px 0 0; font-size: 26px; line-height: 1.15; color: var(--bv-azul-escuro); }
 .vg-topo-per { margin-top: 4px; font-size: 13px; color: var(--tinta-2); }
-.vg-topo-sit {
   font-size: 12px; font-weight: 700; color: var(--tinta-2);
   border: 1px solid var(--linha-forte); border-radius: 999px;
   padding: 4px 14px; background: var(--papel);
@@ -713,7 +712,6 @@ body { -webkit-font-smoothing: antialiased; }
   color: var(--bv-azul-escuro); margin-top: 3px;
 }
 .vg-topo-per { font-size: 12.5px; color: var(--tinta-2); margin-top: 5px; }
-.vg-topo-sit {
   font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   border-radius: 3px; padding: 5px 13px; background: var(--papel-3);
   border-color: var(--linha-forte); color: var(--tinta-2);
@@ -1263,8 +1261,7 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
   padding: 0;
 }
 .vg-topo-txt { padding: 22px 24px; min-width: 0; flex: 1 1 auto; }
-/* a situação fica junto da fotografia, fechando o bloco de texto */
-.vg-topo-sit { align-self: flex-start; margin: 22px 22px 0 0; flex: none; }
+
 
 .vg-topo-foto {
   flex: 0 0 34%; max-width: 420px; min-height: 148px;
@@ -1284,7 +1281,6 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
 @media (max-width: 900px) {
   .vg-topo { flex-wrap: wrap; }
   .vg-topo-txt { padding: 18px 16px; order: 2; flex: 1 1 100%; }
-  .vg-topo-sit { order: 3; margin: 0 16px 18px; }
   .vg-topo-foto {
     order: 1; flex: 1 1 100%; max-width: none;
     min-height: 88px;
@@ -6265,9 +6261,10 @@ window.BEVAP_SEMENTE = {"catalogo":{"2026-09":{"alteracoes_prazo":[],"ciclo":"20
       '<h2 class="vg-topo-comp">' + esc(cicloRotulo(false)) + "</h2>" +
       (pr ? '<div class="vg-topo-per">Período de ' + dmy(pr.data_inicial) +
             " a " + dmy(fimDoPeriodoExibido()) + "</div>" : "") + "</div>" +
-      '<div class="vg-topo-sit">' + esc(situacaoDo(state.comp) === "encerrado"
-        ? "Encerrada" : situacaoDo(state.comp) === "aberto" ? "Aberta" : "Em configuração") +
-      "</div>" +
+      /* O selo de situacao saiu daqui: ficava solto entre o texto e a
+         fotografia, sem se ligar a nenhum dos dois. A informacao nao se
+         perdeu: a situacao do ciclo esta no cabecalho, ao lado da
+         competencia, com o ponto colorido. */
       '<div class="vg-topo-foto" role="presentation" style="background-image:url(' +
       HERO_BEVAP + ')"></div>' +
       "</div>");
